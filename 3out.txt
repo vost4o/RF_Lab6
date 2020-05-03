@@ -1,0 +1,6 @@
+3,insufficient
+80,very good
+5.75,sufficient
+6.25,sufficient
+7.25,sufficient
+8.5,good

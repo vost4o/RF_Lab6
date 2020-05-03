@@ -31,19 +31,22 @@ public class VMainClass {
 
 			// add the class pattern to the eval set
 			String[][] newEvalSet = new String[unknownSet.length][unknownSet[0].length + 1];
+			int[] kValues = new int[] { 1, 3, 5, 7, 9, 13, 17 };
 
-			for (int i = 0; i < unknownSet.length; i++) {
-				for (int j = 0; j < unknownSet[0].length; j++) {
-					newEvalSet[i][j] = unknownSet[i][j];
+			for (int k : kValues) {
+				for (int i = 0; i < unknownSet.length; i++) {
+					for (int j = 0; j < unknownSet[0].length; j++) {
+						newEvalSet[i][j] = unknownSet[i][j];
+					}
+
+					newEvalSet[i][newEvalSet[i].length - 1] = Classificators.performKNNClassification(unknownSet[i],
+							learningSet, distances[i], k);
 				}
-				
-				newEvalSet[i][newEvalSet[i].length - 1] = Classificators.performKNNClassification(unknownSet[i], learningSet,
-						distances[i], 9);
+				FileUtils.writeLearningSetToFile(k + "out.txt", newEvalSet);
 			}
-			
+
 			TestJUnit.testKNNForClass(testingSet, learningSet, 3);
-			
-			FileUtils.writeLearningSetToFile("out.txt", newEvalSet);
+
 		} catch (USVInputFileCustomException e) {
 			System.out.println(e.getMessage());
 		} finally {
