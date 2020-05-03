@@ -2,9 +2,6 @@ package ro.usv.rf;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.Collection;
-import java.util.Arrays;
-
 import org.junit.Test;
 
 public class TestJUnit {
